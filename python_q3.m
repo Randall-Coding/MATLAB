@@ -1,0 +1,42 @@
+% Python questions           Question 3
+% With a given integral number n generate a dictionary of entries
+% (i,i*i)....(n,n*n)  Then print the dictionary on one line
+
+function [] = python_q3()
+   
+   %Initialize data
+   run = 1;  
+   n = int32(0); 
+  
+   while(run)
+   
+       %Get n
+       n = input('Enter a number for n: ');
+   
+       %Check data
+       if (isSingle(n) )
+           n = abs( int32(n) );     %make an int
+           
+           %Create empty cell array
+           dictionary = cell(1,n);
+           
+           %Fill with numbers
+           for i = 1:n
+               dictionary{1,i} = [i, i*i];
+           end
+           
+         
+           
+           %Print
+           printc(dictionary);
+           disp("Run Complete");
+           run = 0;
+           %if not an integer input
+       else
+           warning('Please input scalar integer (press ctrl+c to quit).');
+       end %end if
+    end  %end while
+
+
+
+end
