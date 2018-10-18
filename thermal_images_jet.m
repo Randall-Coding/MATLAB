@@ -1,5 +1,5 @@
 %This script creates thermal type 2D images from input text from (3 x 2997) array
-%created Octobor 17 2018        %updated October 18th 2018
+%created Octobor 17 2018        %updated October 19th 2018
 
 pause(1);
 
