@@ -1,4 +1,4 @@
-%This script creates thermal type 2D images from input text from (3 x n) array
+%This script creates thermal type 2D images from input text from (3 x 2997) array
 %created Octobor 17 2018 
 
 [filenames,folder]=uigetfile('*.txt','MultiSelect','on');     % 'input.txt'

@@ -1,14 +1,11 @@
 %This script creates thermal type 2D images from input text from (3 x n) array
 %created Octobor 17 2018 
 
-[filenames,folder]=uigetfile('*.txt','MultiSelect','on');     % 'input.txt'
+close all  %debug can remove later 
+
+[filenames,folder]=uigetfile('*.*','MultiSelect','on');     % 'input.txt'
 pause(1);
 app.UIFigure.Visible = 'off';app.UIFigure.Visible = 'on';
-
-%no data, exit gracefully
-if (~filenames)
-   return; 
-end
 %convert to cell array if needed
 if (class(filenames) == 'char') 
     temp = cell(1,1);
@@ -82,9 +79,9 @@ for file_index = 1: length(filenames)
     set(gca(),'XLim',[-180,180],'YLim',[-4,4]);
     set(gca(),'Layer','top');
     set(gca(),'TickLength',[0.02,0.02]);
-    %colormap(jet);
+    colormap(jet);
     colorbar();
-    xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
+    set(gca(),'XLabel',"Transducer Angle",'YLabel',);
     % grid -->  set(gca(),'Layer','top','XGrid','on','YGrid','on','GridLineStyle','-');
     
     %old way (commented out) plot with surf using meshgrid (smoothed out version).

@@ -1,4 +1,4 @@
-%This script creates thermal type 2D images from input text from (3 x n) array
+%This script creates thermal type 2D images from input text from (3 x 2997) array
 %created Octobor 17 2018 
 
 [filenames,folder]=uigetfile('*.txt','MultiSelect','on');     % 'input.txt'
@@ -82,7 +82,7 @@ for file_index = 1: length(filenames)
     set(gca(),'XLim',[-180,180],'YLim',[-4,4]);
     set(gca(),'Layer','top');
     set(gca(),'TickLength',[0.02,0.02]);
-    %colormap(jet);
+    colormap(jet);
     colorbar();
     xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
     % grid -->  set(gca(),'Layer','top','XGrid','on','YGrid','on','GridLineStyle','-');
