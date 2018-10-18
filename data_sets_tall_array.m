@@ -8,4 +8,4 @@ function [] = data_sets_tall_array
     
     sig
     avg
-end
+end%
