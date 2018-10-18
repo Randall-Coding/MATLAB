@@ -15,7 +15,7 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
     end
     
     %set variables
-    video = VideoWriter(outname,'Uncompressed AVI');
+    video = VideoWriter(outname,'MPEG-4');
     video.FrameRate = framerate;
     frames = getframe(figure); 
     set(gcf(),'Name','Creating Video','NumberTitle','off');
@@ -119,10 +119,10 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         colormap(type.colormap); 
         colorbar();
         xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
-        set(gcf(),'OuterPosition',[300,200,fig_width,fig_height]);  %testing debug
+        %set(gcf(),'OuterPosition',[300,200,fig_width,fig_height]);  %testing debug
         set(gcf(),'Name','Creating Video','NumberTitle','off');
         frames(file_index) = getframe(gcf);
-        pause(2)
+        pause(0.1)
          
         % optional grid -->  set(gca(),'Layer','top','XGrid','on','YGrid','on','GridLineStyle','-');
 
