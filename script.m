@@ -3,7 +3,7 @@
 
 close all  %debug can remove later 
 
-filenames=uigetfile('*.*','MultiSelect','on');     % 'input.txt'
+[filenames,folder]=uigetfile('*.*','MultiSelect','on');     % 'input.txt'
 %convert to cell array if needed
 if (class(filenames) == 'char') 
     temp = cell(1,1);
@@ -18,7 +18,7 @@ for file_index = 1: length(filenames)
     format long;
 
     %open file
-    currentfile = filenames{file_index};
+    currentfile = [folder, filenames{file_index}];
     fid = fopen(currentfile); 
     raw= fscanf(fid,'%c');
     S = strsplit(raw,'\n');
