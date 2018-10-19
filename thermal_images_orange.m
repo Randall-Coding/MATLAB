@@ -54,7 +54,7 @@ for file_index = 1: length(filenames)
         end
         if only_serial && (strcmp(serial,'') )
             tmp = strsplit(currentfile_base);
-            serial = [tmp{1},' ', tmp{2},' ',tmp{3}];
+            serial = [tmp{2},' ',tmp{3}];
             disp 'serial set using filename'   %debug
             serial 
         end
