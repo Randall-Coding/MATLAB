@@ -1,10 +1,12 @@
 %This script creates thermal type 2D images from input text from (3 x 2997) array
-%created Octobor 17 2018        %updated October 18th 2018
+%created Octobor 17 2018        %updated October 19th 2018
 
 pause(1);
 
 %global variables
 only_serial = false;  %debug replace with type = 'only_serial' or 'uni'
+fig_width = 700;
+fig_height = 500;
 %select file(s) from file browser
 [filenames,folder]=uigetfile('*.txt','MultiSelect','on');     % 'input.txt'
 app.UIFigure.Visible = 'off';app.UIFigure.Visible = 'on';
@@ -108,6 +110,9 @@ for file_index = 1: length(filenames)
     %colormap(jet);
     colorbar();
     xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
+   
+    set(gcf(),'OuterPosition',[300,200,fig_width,fig_height]);  %testing debug
+    
     % optional grid -->  set(gca(),'Layer','top','XGrid','on','YGrid','on','GridLineStyle','-');
     
     %If you prefer smoothed out colors, uncomment lines below.  
