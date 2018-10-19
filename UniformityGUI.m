@@ -94,7 +94,7 @@ function btn_browse_Callback(hObject, eventdata, handles)
     global uni_times 
     [filenames,folder] = uigetfile('*.txt','MultiSelect','on');  
     [filenames,uni_times] = sort_by_unitimes(filenames,folder);
-    t = char(9);
+    t = char(9);  
     list_str1 = ['File' t t 'UniformityTime' , newline];
     for i = 1:length(filenames)
        old_str1 = list_str1;
@@ -340,7 +340,7 @@ function tbox_outname_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-c
+
 
 
 

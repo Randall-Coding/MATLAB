@@ -1,6 +1,6 @@
-function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
-
-    %exit if not files selected
+%function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
+  
+    [filenames,folder] = uigetfile('*.txt','MultiSelect','on');
     if strcmp(class(filenames),'double')
         return;  %debbug exit for real app
     end
@@ -84,4 +84,4 @@ function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
     function output = trim(C) 
         output = C( [C{:,2}] >= 0 ,:);
     end
-end
+%end
