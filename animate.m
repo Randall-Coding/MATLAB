@@ -11,18 +11,19 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
     pause(1); 
     %exit is no files selected
     if strcmp(class(filenames),'double')
+        disp 'filenames is empty, quitting function animate(..)'
         return;  %debbug exit for real app
     end
     
     %set variables
-    video = VideoWriter(outname,'MPEG-4');
+    %video = VideoWriter(outname,'MPEG-4');
+    video = VideoWriter(outname,'Uncompressed AVI');
     video.FrameRate = framerate;
     frames = getframe(figure); 
     set(gcf(),'Name','Creating Video','NumberTitle','off');
     set(gcf(),'OuterPosition',[300,200,fig_width,fig_height])
     pause(1);
     only_serial = false;  %debug replace with type.data = 'only_serial' or 'uni'
-    app.UIFigure.Visible = 'off';app.UIFigure.Visible = 'on';
     
     %convert filenames to cell array if not already
     if strcmp(class(filenames), 'char') 
@@ -112,7 +113,7 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         set(gca(),'Ydir','reverse');
         title = setTitle(only_serial,serial,uni_time,uni_ratio);
         annotation('textbox',[0.0,0.94,1.0,0.05],'String',title,'LineStyle','none','BackgroundColor','red' ...
-                   ,'HorizontalAlignment','center');
+                   ,'HorizontalAlignment','center','VerticalAlignment','middle');
         set(gca(),'XLim',[-180,180],'YLim',[-4,4]);
         set(gca(),'Layer','top');
         set(gca(),'TickLength',[0.02,0.02]); 
@@ -159,8 +160,9 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         % %colormap(jet);
         %colorbar();
         %xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
-    end %file processing loop
-
+    end %main loop / file processing
+    fclose(fid); 
+    
     %animate 
     open(video);
     writeVideo(video,frames);

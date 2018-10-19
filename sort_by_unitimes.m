@@ -2,6 +2,9 @@ function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
 
     %exit if not files selected
     if strcmp(class(filenames),'double')
+        filenames = cell(1,1); filenames{1} = '';
+        uni_times = cell(1,1); uni_times{1} = -1;
+        disp 'no file select, closing function sort_by_unitimes(...)'
         return;  %debbug exit for real app
     end
     
