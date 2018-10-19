@@ -19,7 +19,8 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
     video = VideoWriter(outname,'MPEG-4');
     %video = VideoWriter(outname,'Uncompressed AVI');
     video.FrameRate = framerate;
-    frames = getframe(figure ('Name','Creating Video','NumberTitle','off','OuterPosition',[300,200,fig_width,fig_height]) ); 
+    fig = figure ('Name','Creating Video','NumberTitle','off','OuterPosition',[300,200,fig_width,fig_height]); 
+    frames = getframe(fig); 
     pause(1);
     only_serial = false;  
     
@@ -107,6 +108,8 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         disp 'beginning plot'
 
         %display data...imagesc() method  (more pixelated)
+        fig.Visible = 'off';
+        fig.Visible = 'on';
         imagesc([-180:10:180],[-4:0.1:4],reshape(Z,81,37));
         set(gca(),'Ydir','reverse');
         title = setTitle(only_serial,serial,uni_time,uni_ratio);
@@ -157,8 +160,9 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         % %colormap(jet);
         %colorbar();
         %xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
-    end %main loop / file processing
     fclose(fid); 
+    end %main loop / file processing
+    
     
     %animate 
     open(video);

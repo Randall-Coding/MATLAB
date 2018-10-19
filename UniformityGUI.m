@@ -110,7 +110,7 @@ function btn_browse_Callback(hObject, eventdata, handles)
        old_str1 = list_str1;
        list_str1 = [old_str1 filenames{i} '     ' num2str(uni_times{i}) newline];
     end
-    handles.tbox_files.String = list_str1;
+%  handles.tbox_files.String = list_str1;
     handles.tbl_files.Data = [filenames',uni_times'];
     
 function edit1_Callback(hObject, eventdata, handles)
@@ -203,7 +203,6 @@ function tbox_fig_height_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 
 % --- Executes on button press in btn_render.
 function btn_render_Callback(hObject, eventdata, handles)

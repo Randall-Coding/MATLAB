@@ -77,12 +77,14 @@ function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
                  times{file_index} = -1;
                  no_uniformity = true;
             end
-            
             fclose(fid); 
+        
         end %for loop all files
         out = times;
     end %get_uni_times()
     
+
+
     %%subfunctions 
     function output = trim(C) 
         output = C( [C{:,2}] >= 0 ,:);
