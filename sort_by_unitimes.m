@@ -28,7 +28,7 @@ function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
     uni_times = mixed(:,2)' ;
     
     if (no_uniformity)
-       warndlg('Data not containing Uniformity time omitted!') 
+       warndlg('Some data did not contain Uniformity Time.  Those files were omitted') 
     end
     
     
