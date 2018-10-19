@@ -1,5 +1,5 @@
 %This script creates thermal type 2D images from input text from (3 x n) array
-%created Octobor 17 2018 
+%created Octobor 17 2018   %updated October 18th 2018
 
 %initialize
 j=1;
@@ -12,7 +12,6 @@ filename = uigetfile('*.*','MultiSelect','on');     % 'input.txt'
 fid = fopen(filename); 
 raw= fscanf(fid,'%c');
 S = strsplit(raw,'\n');
-
 
 %main loop 
 for i=1: length(S) 
