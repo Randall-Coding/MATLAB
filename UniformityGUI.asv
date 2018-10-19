@@ -93,14 +93,11 @@ function btn_browse_Callback(hObject, eventdata, handles)
     global folder 
     global uni_times 
     [tmp_filenames,tmp_folder] = uigetfile('*.txt','MultiSelect','on');  
-    [tmp_filenames,tmp_uni_times] = sort_by_unitimes(tmp_filenames,tmp_folder);
+    [tmp_filenames,tmp_folder] = sort_by_unitimes(tmp_filenames,tmp_folder);
     
-    if tmp_uni_times{1} == -1
-        disp 'Nothing selected, do not modify'
-    else
+    if isscalar(uni_times) && uni_times == -1
         filenames = tmp_filenames 
         folder = tmp_folder
-        uni_times = tmp_uni_times
     end
     
     %debug text box format

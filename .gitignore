@@ -1,6 +1,8 @@
 
 
 *.m~
+*.avi
+*.mp4
 
 script/
 hide.me

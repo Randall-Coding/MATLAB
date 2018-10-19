@@ -16,14 +16,12 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
     end
     
     %set variables
-    %video = VideoWriter(outname,'MPEG-4');
-    video = VideoWriter(outname,'Uncompressed AVI');
+    video = VideoWriter(outname,'MPEG-4');
+    %video = VideoWriter(outname,'Uncompressed AVI');
     video.FrameRate = framerate;
-    frames = getframe(figure); 
-    set(gcf(),'Name','Creating Video','NumberTitle','off');
-    set(gcf(),'OuterPosition',[300,200,fig_width,fig_height])
+    frames = getframe(figure ('Name','Creating Video','NumberTitle','off','OuterPosition',[300,200,fig_width,fig_height]) ); 
     pause(1);
-    only_serial = false;  %debug replace with type.data = 'only_serial' or 'uni'
+    only_serial = false;  
     
     %convert filenames to cell array if not already
     if strcmp(class(filenames), 'char') 
@@ -120,7 +118,6 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         colormap(type.colormap); 
         colorbar();
         xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
-        %set(gcf(),'OuterPosition',[300,200,fig_width,fig_height]);  %testing debug
         set(gcf(),'Name','Creating Video','NumberTitle','off');
         frames(file_index) = getframe(gcf);
         pause(0.1)
