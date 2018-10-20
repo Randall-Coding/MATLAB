@@ -52,7 +52,7 @@ function [filenames, uni_times] = sort_by_unitimes(filenames,folder)
                      spl = strsplit(lines{i},'Uniformity time =');
                      spl = strsplit(spl{2},'sec');
                      spl{1};
-                     uni_time = str2double(spl{1});
+                     uni_time = str2double(spl{1})
                      if isempty(times{file_index})
                         times{file_index} = uni_time;
                      end

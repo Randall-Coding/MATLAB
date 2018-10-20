@@ -23,7 +23,7 @@ function varargout = UniformityGUI(varargin)
 
 % Edit the above text to modify the response to help UniformityGUI
 
-% Last Modified by GUIDE v2.5 19-Oct-2018 22:27:42
+% Last Modified by GUIDE v2.5 19-Oct-2018 23:20:13
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -95,12 +95,20 @@ function btn_browse_Callback(hObject, eventdata, handles)
     [filenames,folder] = uigetfile('*.txt','MultiSelect','on');  
     [filenames,uni_times] = sort_by_unitimes(filenames,folder);
     t = char(9);
-    list_str = ['File' t t '                             ' 'Uniformity Time' newline];
+    list_str1 = ['File' t t 'UniformityTime' , newline];
+    %list_str2 = ['Uniformity Time' newline];
     for i = 1:length(filenames)
-       old_str = list_str
-       list_str = [old_str filenames{i} t num2str(uni_times{i}) newline]
+       old_str1 = list_str1;
+       %old_str2 = list_str2;
+       list_str1 = [old_str1 filenames{i} '     ' num2str(uni_times{i}) newline];
+       %list_str2 = [old_str2 num2str(uni_times{i}) newline];
     end
-    handles.tbox_files.String = list_str;
+    handles.tbox_files.String = list_str1;
+    filenames'
+    uni_times'
+    uni_times{1}
+    handles.tbl_files.Data = [filenames',uni_times'];
+    %handles.tbox_uni.String = list_str2;
     
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
@@ -268,3 +276,49 @@ function uibuttongroup2_SelectionChangedFcn(hObject, eventdata, handles)
     case 'radio_red'
         colormap_g = 'jet'
     end
+
+
+
+function edit8_Callback(hObject, eventdata, handles)
+% hObject    handle to edit8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit8 as text
+%        str2double(get(hObject,'String')) returns contents of edit8 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit8_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function tbox_uni_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_uni (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of tbox_uni as text
+%        str2double(get(hObject,'String')) returns contents of tbox_uni as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function tbox_uni_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_uni (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
