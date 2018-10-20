@@ -1,3 +1,4 @@
+
 function varargout = thermGUI(varargin)
 % THERMGUI MATLAB code for thermGUI.fig
 %      THERMGUI, by itself, creates a new THERMGUI or raises the existing
@@ -22,7 +23,7 @@ function varargout = thermGUI(varargin)
 
 % Edit the above text to modify the response to help thermGUI
 
-% Last Modified by GUIDE v2.5 19-Oct-2018 16:25:41
+% Last Modified by GUIDE v2.5 19-Oct-2018 17:37:38
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -58,6 +59,11 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
+%mystuff
+%set default radio button value and colormap  
+handles.radio_red.Value = 1.0;
+handles.tbox_colormap.String = 'jet';
+
 % UIWAIT makes thermGUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -73,13 +79,13 @@ function varargout = thermGUI_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
+% --- Executes on button press in btn_browse.
+function btn_browse_Callback(hObject, eventdata, handles)
+% hObject    handle to btn_browse (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
+    [filenames,folder]=uigetfile('*.txt','MultiSelect','on');  
+    handles.tbox_filenames.String  
 
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
@@ -117,7 +123,9 @@ function radio_red_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of radio_red
-
+  if hObject.Value
+     handles.tbox_colormap.String = 'jet'; 
+  end
 
 % --- Executes on button press in radio_orange.
 function radio_orange_Callback(hObject, eventdata, handles)
@@ -126,21 +134,22 @@ function radio_orange_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of radio_orange
+   if hObject.Value
+    handles.tbox_colormap.String = 'default';
+   end
 
-
-
-function tbox_img_width_Callback(hObject, eventdata, handles)
-% hObject    handle to tbox_img_width (see GCBO)
+function tbox_fig_width_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_fig_width (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of tbox_img_width as text
-%        str2double(get(hObject,'String')) returns contents of tbox_img_width as a double
+% Hints: get(hObject,'String') returns contents of tbox_fig_width as text
+%        str2double(get(hObject,'String')) returns contents of tbox_fig_width as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function tbox_img_width_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to tbox_img_width (see GCBO)
+function tbox_fig_width_CreaorangeteFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_fig_width (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -152,18 +161,18 @@ end
 
 
 
-function tbox_img_height_Callback(hObject, eventdata, handles)
-% hObject    handle to tbox_img_height (see GCBO)
+function tbox_fig_height_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_fig_height (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of tbox_img_height as text
-%        str2double(get(hObject,'String')) returns contents of tbox_img_height as a double
+% Hints: get(hObject,'String') returns contents of tbox_fig_height as text
+%        str2double(get(hObject,'String')) returns contents of tbox_fig_height as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function tbox_img_height_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to tbox_img_height (see GCBO)
+function tbox_fig_height_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_fig_height (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -174,13 +183,17 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in btn_render.
+function btn_render_Callback(hObject, eventdata, handles)
+% hObject    handle to btn_render (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
+   fig_width = str2double (handles.tbox_fig_width.String)
+   fig_height = str2double (handles.tbox_fig_height.String)
+   type.colormap = handles.tbox_colormap.String 
+   type.data = 'uni'
+   thermal_func(type,fig_width,fig_height);
+   
 
 function edit5_Callback(hObject, eventdata, handles)
 % hObject    handle to edit5 (see GCBO)
@@ -194,6 +207,19 @@ function edit5_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function edit5_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function tbox_colormap_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_colormap (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
