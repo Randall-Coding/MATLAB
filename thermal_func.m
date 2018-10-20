@@ -3,13 +3,11 @@
 
 % function [] = thermal_func(type,fig_width,fig_height,filenames,folder) 
 
-%%debug
-global folder
 [filenames,folder]=uigetfile('*.txt','MultiSelect','on');  %%debug
 
 pause(1); 
     if strcmp(class(filenames),'double')
-        return;  %exit for real app
+        return;  %debbug exit for real app
     end
     
     %set variables
@@ -24,7 +22,7 @@ pause(1);
     end
     
     %make array of uniform times
-    uni_times = get_uni_times(filenames);
+    uni_times = get_uni_times(filenames,folder);
     
     %combine with file names
     filenames = [filenames',uni_times'];  
@@ -180,8 +178,7 @@ pause(1);
         out = title;
     end
 
-    function out = get_uni_times(filenames)
-    global folder  %%debug 
+    function out = get_uni_times(filenames,folder)
         %all files loop
         times = cell(1,length(filenames)) 
         

@@ -23,7 +23,7 @@ function varargout = UniformityGUI(varargin)
 
 % Edit the above text to modify the response to help UniformityGUI
 
-% Last Modified by GUIDE v2.5 19-Oct-2018 19:52:03
+% Last Modified by GUIDE v2.5 19-Oct-2018 22:27:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -63,10 +63,11 @@ guidata(hObject, handles);
 %set default radio button value and colormap  
 handles.radio_red.Value = 1.0;
 global colormap_g
-colormap_g = 'jet';
 global filenames 
+global uni_times
+colormap_g = 'jet';
 filenames = double(0);  %default
-%%% handles.tbox_colormap.String = 'jet';
+uni_times = false;   %default
 
 % UIWAIT makes UniformityGUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -90,8 +91,17 @@ function btn_browse_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     global filenames
     global folder 
-    [filenames,folder]=uigetfile('*.txt','MultiSelect','on');  
-   
+    global uni_times 
+    [filenames,folder] = uigetfile('*.txt','MultiSelect','on');  
+    [filenames,uni_times] = sort_by_unitimes(filenames,folder);
+    t = char(9);
+    list_str = ['File' t t '                             ' 'Uniformity Time' newline];
+    for i = 1:length(filenames)
+       old_str = list_str
+       list_str = [old_str filenames{i} t num2str(uni_times{i}) newline]
+    end
+    handles.tbox_files.String = list_str;
+    
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -201,18 +211,18 @@ function btn_render_Callback(hObject, eventdata, handles)
    thermal_func(type,fig_width,fig_height,filenames,folder);
    
 
-function edit5_Callback(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function tbox_files_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_files (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit5 as text
-%        str2double(get(hObject,'String')) returns contents of edit5 as a double
+% Hints: get(hObject,'String') returns contents of tbox_files as text
+%        str2double(get(hObject,'String')) returns contents of tbox_files as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function tbox_files_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_files (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
