@@ -1,36 +1,36 @@
 
-function varargout = thermGUI(varargin)
-% THERMGUI MATLAB code for thermGUI.fig
-%      THERMGUI, by itself, creates a new THERMGUI or raises the existing
+function varargout = UniformityGUI(varargin)
+% UNIFORMITYGUI MATLAB code for UniformityGUI.fig
+%      UNIFORMITYGUI, by itself, creates a new UNIFORMITYGUI or raises the existing
 %      singleton*.
 %
-%      H = THERMGUI returns the handle to a new THERMGUI or the handle to
+%      H = UNIFORMITYGUI returns the handle to a new UNIFORMITYGUI or the handle to
 %      the existing singleton*.
 %
-%      THERMGUI('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in THERMGUI.M with the given input arguments.
+%      UNIFORMITYGUI('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in UNIFORMITYGUI.M with the given input arguments.
 %
-%      THERMGUI('Property','Value',...) creates a new THERMGUI or raises the
+%      UNIFORMITYGUI('Property','Value',...) creates a new UNIFORMITYGUI or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before thermGUI_OpeningFcn gets called.  An
+%      applied to the GUI before UniformityGUI_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to thermGUI_OpeningFcn via varargin.
+%      stop.  All inputs are passed to UniformityGUI_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help thermGUI
+% Edit the above text to modify the response to help UniformityGUI
 
-% Last Modified by GUIDE v2.5 19-Oct-2018 18:43:34
+% Last Modified by GUIDE v2.5 19-Oct-2018 19:52:03
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @thermGUI_OpeningFcn, ...
-                   'gui_OutputFcn',  @thermGUI_OutputFcn, ...
+                   'gui_OpeningFcn', @UniformityGUI_OpeningFcn, ...
+                   'gui_OutputFcn',  @UniformityGUI_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -45,15 +45,15 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before thermGUI is made visible.
-function thermGUI_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before UniformityGUI is made visible.
+function UniformityGUI_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to thermGUI (see VARARGIN)
+% varargin   command line arguments to UniformityGUI (see VARARGIN)
 
-% Choose default command line output for thermGUI
+% Choose default command line output for UniformityGUI
 handles.output = hObject;
 
 % Update handles structure
@@ -68,12 +68,12 @@ global filenames
 filenames = double(0);  %default
 %%% handles.tbox_colormap.String = 'jet';
 
-% UIWAIT makes thermGUI wait for user response (see UIRESUME)
+% UIWAIT makes UniformityGUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = thermGUI_OutputFcn(hObject, eventdata, handles) 
+function varargout = UniformityGUI_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB

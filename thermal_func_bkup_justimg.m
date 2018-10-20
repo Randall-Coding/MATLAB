@@ -1,11 +1,7 @@
 %This script creates thermal type 2D images from input text from (3 x 2997) array
 %created Octobor 17 2018        %updated October 19th 2018
 
-% function [] = thermal_func(type,fig_width,fig_height,filenames,folder) 
-
-%%debug
-global folder
-[filenames,folder]=uigetfile('*.txt','MultiSelect','on');  %%debug
+function [] = thermal_func(type,fig_width,fig_height,filenames,folder) 
 
 pause(1); 
     if strcmp(class(filenames),'double')
@@ -22,16 +18,6 @@ pause(1);
         temp{1} = filenames;
         filenames=temp;
     end
-    
-    %make array of uniform times
-    uni_times = get_uni_times(filenames);
-    
-    %combine with file names
-    filenames = [filenames',uni_times'];  
-    %sort by lowest to highest
-    filenames = sortrows(filenames,2,'ascend'); 
-    
-    return %%debug 
     
     %main loop
     for file_index = 1: length(filenames)        
@@ -180,41 +166,4 @@ pause(1);
         out = title;
     end
 
-    function out = get_uni_times(filenames)
-    global folder  %%debug 
-        %all files loop
-        times = cell(1,length(filenames)) 
-        
-        for file_index = 1: length(filenames)        
-            %initialize loop variables
-            j=1;       
-            data_writing = false;
-            serial = ''; 
-            uni_time = '';
-            uni_ratio = '';
-            format long;
-
-            %open file
-            currentfile_base = filenames{file_index};
-            currentfile = [folder, currentfile_base];
-            fid = fopen(currentfile); 
-            raw= fscanf(fid,'%c');
-            lines = strsplit(raw,'\n');
-
-            %data aquisition on single file 
-            for i=1: length(lines) 
-                %assign for 'uniformity time' and 'uniformity ratio'  
-                if strfind(  lines{i},'Uniformity time') 
-                     spl = strsplit(lines{i},'Uniformity time =')
-                     spl = strsplit(spl{2},'sec')
-                     spl{1}
-                     uni_time = str2double(spl{1});
-                     if isempty(times{file_index})
-                        times{file_index} = uni_time;
-                     end
-                end
-            end %for loop single
-        end %for loop all files
-        out = times;
-    end %get_uni_times()
 %end %end thermal func
