@@ -23,7 +23,7 @@ function varargout = UniformityGUI(varargin)
 
 % Edit the above text to modify the response to help UniformityGUI
 
-% Last Modified by GUIDE v2.5 19-Oct-2018 23:20:13
+% Last Modified by GUIDE v2.5 23-Oct-2018 09:50:45
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -96,19 +96,12 @@ function btn_browse_Callback(hObject, eventdata, handles)
     [filenames,uni_times] = sort_by_unitimes(filenames,folder);
     t = char(9);
     list_str1 = ['File' t t 'UniformityTime' , newline];
-    %list_str2 = ['Uniformity Time' newline];
     for i = 1:length(filenames)
        old_str1 = list_str1;
-       %old_str2 = list_str2;
        list_str1 = [old_str1 filenames{i} '     ' num2str(uni_times{i}) newline];
-       %list_str2 = [old_str2 num2str(uni_times{i}) newline];
     end
     handles.tbox_files.String = list_str1;
-    filenames'
-    uni_times'
-    uni_times{1}
     handles.tbl_files.Data = [filenames',uni_times'];
-    %handles.tbox_uni.String = list_str2;
     
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
@@ -215,8 +208,10 @@ function btn_render_Callback(hObject, eventdata, handles)
    fig_height = str2double (handles.tbox_fig_height.String)
    type.colormap = colormap_g  
    type.data = 'uni'
-   filenames 
-   thermal_func(type,fig_width,fig_height,filenames,folder);
+   outname = handles.tbox_outname.String 
+   framerate = 1 / str2double(handles.tbox_disptime.String)
+   %framerate = str2double(handles.tbox_framerate.String)
+   animate(type,fig_width,fig_height,filenames,folder,outname,framerate);
    
 
 function tbox_files_Callback(hObject, eventdata, handles)
@@ -314,6 +309,76 @@ function tbox_uni_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function tbox_uni_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to tbox_uni (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function tbox_outname_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_outname (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of tbox_outname as text
+%        str2double(get(hObject,'String')) returns contents of tbox_outname as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function tbox_outname_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_outname (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+c
+
+
+
+function tbox_framerate_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_framerate (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of tbox_framerate as text
+%        str2double(get(hObject,'String')) returns contents of tbox_framerate as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function tbox_framerate_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_framerate (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function tbox_disptime_Callback(hObject, eventdata, handles)
+% hObject    handle to tbox_disptime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of tbox_disptime as text
+%        str2double(get(hObject,'String')) returns contents of tbox_disptime as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function tbox_disptime_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tbox_disptime (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
