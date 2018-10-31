@@ -111,10 +111,10 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         fig.Visible = 'off';
         fig.Visible = 'on';
         imagesc([-180:10:180],[-4:0.1:4],reshape(Z,81,37));
-        set(gca(),'Ydir','reverse');
         title = setTitle(only_serial,serial,uni_time,uni_ratio);
         annotation('textbox',[0.0,0.94,1.0,0.05],'String',title,'LineStyle','none','BackgroundColor','red' ...
                    ,'HorizontalAlignment','center','VerticalAlignment','middle');
+        set(gca(),'Ydir','reverse');
         set(gca(),'XLim',[-180,180],'YLim',[-4,4]);
         set(gca(),'Layer','top');
         set(gca(),'TickLength',[0.02,0.02]); 
@@ -123,7 +123,7 @@ function [] = animate(type,fig_width,fig_height,filenames,folder,outname,framera
         xlabel('Transducer Angle'); ylabel('Transducer Length (mm)');
         set(gcf(),'Name','Creating Video','NumberTitle','off');
         frames(file_index) = getframe(gcf);
-        pause(0.1)
+        %pause(0.1)
          
         % optional grid -->  set(gca(),'Layer','top','XGrid','on','YGrid','on','GridLineStyle','-');
 
