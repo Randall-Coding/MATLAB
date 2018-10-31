@@ -62,11 +62,12 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 %%my stuff
-%intialize variables
+%initialize variables
 global data
 data = cell(1,3);
 set(gcf,'Name','SW0018_Uniformity_Calculator');
 handles.tbl_all.Data = data;
+data = zeros(1,3); data(:) = -1;
 
 % --- Outputs from this function are returned to the command line.
 function varargout = SW_0018_OutputFcn(hObject, eventdata, handles) 
@@ -90,9 +91,11 @@ global data
 load_img = handles.lbl_load; 
 data = SW0018_Uniformity_Calculator(load_img);
 handles.lbl_load.Visible = 'off';
-
-handles.tbl_all.Data = data;
-
+%load data if not empty 
+if ( (data(1)) ~= -1 )
+    handles.tbl_all.Data = data;
+end
+tbhandles.tbl_all.ColumnWidth{1}
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over btn_browse.
 function btn_browse_ButtonDownFcn(hObject, eventdata, handles)

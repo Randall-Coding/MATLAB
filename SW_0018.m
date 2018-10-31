@@ -68,6 +68,11 @@ data = cell(1,3);
 set(gcf,'Name','SW0018_Uniformity_Calculator');
 handles.tbl_all.Data = data;
 data = zeros(1,3); data(:) = -1;
+tbl_width = handles.tbl_all.ColumnWidth{1} + handles.tbl_all.ColumnWidth{2} + handles.tbl_all.ColumnWidth{3} ...
+    + 33;  %last number is length of scroll bar
+handles.tbl_all.Position = [11 0 tbl_width 447]
+
+
 
 % --- Outputs from this function are returned to the command line.
 function varargout = SW_0018_OutputFcn(hObject, eventdata, handles) 
@@ -95,6 +100,10 @@ handles.lbl_load.Visible = 'off';
 if ( (data(1)) ~= -1 )
     handles.tbl_all.Data = data;
 end
+tbl_width = handles.tbl_all.ColumnWidth{1} + handles.tbl_all.ColumnWidth{2} + handles.tbl_all.ColumnWidth{3} ...
+    + 30 + 10;  %last number is length of scroll bar
+handles.tbl_all.Position = [11 0 tbl_width 447]
+
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over btn_browse.
 function btn_browse_ButtonDownFcn(hObject, eventdata, handles)
