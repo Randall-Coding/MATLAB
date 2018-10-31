@@ -1,4 +1,4 @@
-thermal_jet_matlab Executable
+SW_0018 Executable
 
 1. Prerequisites for Deployment 
 
@@ -27,7 +27,7 @@ NOTE: You will need administrator rights to run the MATLAB Runtime installer.
 
 Files to Package for Standalone 
 ================================
--thermal_jet_matlab.exe
+-SW_0018.exe
 -MCRInstaller.exe 
     Note: if end users are unable to download the MATLAB Runtime using the
     instructions in the previous section, include it when building your 
