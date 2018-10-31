@@ -7,7 +7,20 @@
 % Note: The raw scan data can be only in the following format where XXXX are numbers only. 'TXR XXXX RMXXX R24.txt'
 
 %% To choose the folder containing raw scan data 
+
+function data = SW0018_Uniformity_Calculator(load_img)
+
 folder= uigetdir();
+
+load_img.Visible = 'on';
+drawnow;
+
+%if nothing selected, then exit function 
+if (strcmp (class(folder),'double'))
+    data = cell(1,3);
+    return;  
+end
+
 info=dir(folder);
 j=1;
 k=1;
@@ -58,6 +71,8 @@ else
 end
 
 clearvars -except final_mat
+
+data = final_mat;
 %% Function to calculate uniformity time and uniformity ratio
 function [Time,ratio] = unitime(vrms,scanr)
 clear Time;
@@ -124,5 +139,7 @@ end
 
 
 end
+
+end %end SW0018_Uniformity_Calculator
 
         
