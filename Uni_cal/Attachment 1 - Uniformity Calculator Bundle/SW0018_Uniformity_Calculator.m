@@ -17,7 +17,7 @@ drawnow;
 
 %if nothing selected, then exit function 
 if (strcmp (class(folder),'double'))
-    data = cell(1,3);
+    data = zeros(1,3); data(:) = -1;
     return;  
 end
 

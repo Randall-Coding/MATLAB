@@ -62,11 +62,12 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 %%my stuff
-%intialize variables
+%initialize variables
 global data
 data = cell(1,3);
 set(gcf,'Name','SW0018_Uniformity_Calculator');
 handles.tbl_all.Data = data;
+data = zeros(1,3); data(:) = -1;
 
 % --- Outputs from this function are returned to the command line.
 function varargout = SW_0018_OutputFcn(hObject, eventdata, handles) 
@@ -91,7 +92,7 @@ load_img = handles.lbl_load;
 data = SW0018_Uniformity_Calculator(load_img);
 handles.lbl_load.Visible = 'off';
 %load data if not empty 
-if ( ~ isempty(data) )
+if ( (data(1)) ~= -1 )
     handles.tbl_all.Data = data;
 end
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
