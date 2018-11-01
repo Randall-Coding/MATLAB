@@ -69,8 +69,8 @@ set(gcf,'Name','SW0018_Uniformity_Calculator');
 handles.tbl_all.Data = data;
 data = zeros(1,3); data(:) = -1;
 tbl_width = handles.tbl_all.ColumnWidth{1} + handles.tbl_all.ColumnWidth{2} + handles.tbl_all.ColumnWidth{3} ...
-    + 33;  %last number is length of scroll bar
-handles.tbl_all.Position = [11 0 tbl_width 447]
+    + 32;  %last number is length of scroll bar
+handles.tbl_all.Position = [11 0 tbl_width 447];
 
 
 
@@ -99,10 +99,21 @@ handles.lbl_load.Visible = 'off';
 %load data if not empty 
 if ( (data(1)) ~= -1 )
     handles.tbl_all.Data = data;
+    
+    %readjust width
+    tbl_width = handles.tbl_all.ColumnWidth{1} + handles.tbl_all.ColumnWidth{2} + handles.tbl_all.ColumnWidth{3} ...
+    + 35;  %last number is length of row number column 
+    if length(data(:,1)) > 21
+        tbl_width = tbl_width + 18;  %adjusting for scrollbar
+        disp 'data over 20 counts'
+    end
+    if length(data(:,1)) > 99
+        tbl_width = tbl_width + 12;
+        disp 'data over 100 counts'
+    end
+    handles.tbl_all.Position = [11 0 tbl_width 447];
 end
-tbl_width = handles.tbl_all.ColumnWidth{1} + handles.tbl_all.ColumnWidth{2} + handles.tbl_all.ColumnWidth{3} ...
-    + 30 + 10;  %last number is length of scroll bar
-handles.tbl_all.Position = [11 0 tbl_width 447]
+
 
 % --- If Enable == 'on', executes on mouse press in 5 pixel border.
 % --- Otherwise, executes on mouse press in 5 pixel border or over btn_browse.
