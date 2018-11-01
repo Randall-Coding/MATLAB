@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
   <configuration file="C:\Users\mcgoy\Documents\MATLAB\SW0018_Uniformity_Calculator.prj" location="C:\Users\mcgoy\Documents\MATLAB" name="SW0018_Uniformity_Calculator" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>SW_0018</param.appname>
+    <param.appname>SW_0018V2</param.appname>
     <param.icon>${PROJECT_ROOT}\SW0018_Uniformity_Calculator_resources\icon.ico</param.icon>
     <param.icons>
       <file>${PROJECT_ROOT}\SW0018_Uniformity_Calculator_resources\icon_48.png</file>
@@ -16,7 +16,7 @@
     <param.description>SW0018 Uniformity Calculator with GUI</param.description>
     <param.screenshot>${PROJECT_ROOT}\calculator.png</param.screenshot>
     <param.guid />
-    <param.installpath.string>\SW_0018\</param.installpath.string>
+    <param.installpath.string>\SW_0018V2\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo>${PROJECT_ROOT}\calculator.png</param.logo>
     <param.install.notes />
@@ -84,8 +84,8 @@
       <file>${PROJECT_ROOT}\Uni_cal\Attachment 1 - Uniformity Calculator Bundle\mexSingleStepBHTE_1D.mexw64</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\SW0018_Uniformity_Calculator\for_testing" name="SW_0018.exe" optional="false">C:\Users\mcgoy\Documents\MATLAB\SW0018_Uniformity_Calculator\for_testing\SW_0018.exe</file>
       <file location="${PROJECT_ROOT}\SW0018_Uniformity_Calculator\for_testing" name="splash.png" optional="false">C:\Users\mcgoy\Documents\MATLAB\SW0018_Uniformity_Calculator\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\SW0018_Uniformity_Calculator\for_testing" name="SW_0018V2.exe" optional="false">C:\Users\mcgoy\Documents\MATLAB\SW0018_Uniformity_Calculator\for_testing\SW_0018V2.exe</file>
       <file location="${PROJECT_ROOT}\SW0018_Uniformity_Calculator\for_testing" name="readme.txt" optional="true">C:\Users\mcgoy\Documents\MATLAB\SW0018_Uniformity_Calculator\for_testing\readme.txt</file>
     </build-deliverables>
     <workflow />

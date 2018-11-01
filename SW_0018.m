@@ -65,7 +65,6 @@ guidata(hObject, handles);
 %initialize variables
 global data
 data = cell(1,3);
-set(gcf,'Name','SW0018_Uniformity_Calculator');
 handles.tbl_all.Data = data;
 data = zeros(1,3); data(:) = -1;
 tbl_width = handles.tbl_all.ColumnWidth{1} + handles.tbl_all.ColumnWidth{2} + handles.tbl_all.ColumnWidth{3} ...
